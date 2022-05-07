@@ -7,15 +7,14 @@ var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword();
   var passwordText = document.querySelector("#password");
-
   passwordText.value = password;
+ 
 
 }
 
 // Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
+generateBtn.addEventListener("click", generatePassword);
 
 // Generating random characters
 function lowercaseChar(){
@@ -42,25 +41,25 @@ function specialChar(){
 
 // Prompt user to select password criteria
 function generatePassword(){
-  lower = true;
-  upper = true;
-  number = true;
-  special = true;
+  password = ""
   var passwordLength = prompt("Password length?", "8-128 characters");
    if(passwordLength >= 8 && passwordLength <=128){
-  //   let lower = confirm("Would you like to include lowercase letters?")
-  //   let upper = confirm("Would you like to include uppercase letters?")
-  //   let number = confirm("Would you like to include numbers?")
-  //   let special = confirm("would you like to include special characters? ! @ # $ % ^ & *")
-
-
-    
-    
+    let lower = confirm("Would you like to include lowercase letters?")
+    let upper = confirm("Would you like to include uppercase letters?")
+    let number = confirm("Would you like to include numbers?")
+    let special = confirm("would you like to include special characters? ! @ # $ % ^ & *")
+   
+    //add loop to select and fill in random characters
 
     for(i = 0; i < passwordLength; i++){
+      if(!lower && !upper && !number && !special){
+        alert("You must choose at least one character");
+        generatePassword();
+        return;
+      }
       if(lower && password.length < passwordLength){
         password += lowercaseChar()
-      }
+        }
       if(upper && password.length < passwordLength){
         password += uppercaseChar()
       }
@@ -73,36 +72,10 @@ function generatePassword(){
     }
     //scramble generated password
 
-   password = password.split("").sort(function(a, b){return 0.5 - Math.random()}).join("");    
-
-
-
-
-
-
-    //add loop to select and fill in random characters
-
-    // var = passwordGen
-
-    // for(i = 0, i < passwordLength, i++) {
-     
+   password = password.split("").sort(function(a, b){return 0.5 - Math.random()}).join("");
+   writePassword() 
   }
-  // else{
-  //   alert("Please enter a correct length")
-  //   writePassword()
-  // }
-}
-
-
-
-
-
-
-
-
-
-
-function randomSelectionTest(){
-  var randos = (lowercaseChar, uppercaseChar,numbersChar, specialChar)
-  return randos[Math.floor(Math.random()) * 4]
+  else{
+    alert("Please enter a correct length")
+  }
 }
