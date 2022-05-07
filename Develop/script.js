@@ -1,4 +1,5 @@
 // Assignment code here
+var password = "";
 
 
 // Get references to the #generate element
@@ -39,31 +40,69 @@ function specialChar(){
 }
 
 
-console.log(lowercaseChar())
-console.log(uppercaseChar())
-console.log(numbersChar())
-console.log(specialChar())
-
-
-
 // Prompt user to select password criteria
 function generatePassword(){
+  lower = true;
+  upper = true;
+  number = true;
+  special = true;
   var passwordLength = prompt("Password length?", "8-128 characters");
    if(passwordLength >= 8 && passwordLength <=128){
-    let lower = confirm("Would you like to include lowercase letters?")
-    let upper = confirm("Would you like to include uppercase letters?")
-    let number = confirm("Would you like to include numbers?")
-    let special = confirm("would you like to include special characters? ! @ # $ % ^ & *")
-    console.log(lower)
-    console.log(upper)
-    console.log(number)
-    console.log(special)
-  }
-  else{
-    alert("Please enter a correct length")
-    writePassword()
-    
-  }
-  
+  //   let lower = confirm("Would you like to include lowercase letters?")
+  //   let upper = confirm("Would you like to include uppercase letters?")
+  //   let number = confirm("Would you like to include numbers?")
+  //   let special = confirm("would you like to include special characters? ! @ # $ % ^ & *")
 
+
+    
+    
+
+    for(i = 0; i < passwordLength; i++){
+      if(lower && password.length < passwordLength){
+        password += lowercaseChar()
+      }
+      if(upper && password.length < passwordLength){
+        password += uppercaseChar()
+      }
+      if(number && password.length < passwordLength){
+        password += numbersChar()
+      }
+      if(special && password.length < passwordLength){
+        password += specialChar()
+      }
+    }
+    //scramble generated password
+
+   password = password.split("").sort(function(a, b){return 0.5 - Math.random()}).join("");    
+
+
+
+
+
+
+    //add loop to select and fill in random characters
+
+    // var = passwordGen
+
+    // for(i = 0, i < passwordLength, i++) {
+     
+  }
+  // else{
+  //   alert("Please enter a correct length")
+  //   writePassword()
+  // }
+}
+
+
+
+
+
+
+
+
+
+
+function randomSelectionTest(){
+  var randos = (lowercaseChar, uppercaseChar,numbersChar, specialChar)
+  return randos[Math.floor(Math.random()) * 4]
 }
